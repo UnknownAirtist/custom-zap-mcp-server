@@ -1,0 +1,58 @@
+{
+  "server": {
+    "port": 8090,
+    "host": "0.0.0.0"
+  },
+  "zap": {
+    "apiKey": "change-me-1234",
+    "host": "localhost",
+    "port": 8080,
+    "maxScanDuration": 3600,
+    "pollInterval": 10
+  },
+  "github": {
+    "webhookSecret": "your-webhook-secret",
+    "issueLabels": ["security", "zap-scan"],
+    "scanTypes": {
+      "full": {
+        "name": "Full Scan",
+        "description": "Complete security scan including active scanning",
+        "options": {
+          "spider": true,
+          "ajax": true,
+          "active": true,
+          "passive": true
+        }
+      },
+      "baseline": {
+        "name": "Baseline Scan",
+        "description": "Passive scan without active testing",
+        "options": {
+          "spider": true,
+          "ajax": true,
+          "active": false,
+          "passive": true
+        }
+      },
+      "api": {
+        "name": "API Scan",
+        "description": "API-focused scan using OpenAPI/Swagger definition",
+        "options": {
+          "spider": false,
+          "ajax": false,
+          "active": true,
+          "passive": true,
+          "api": true
+        }
+      }
+    }
+  },
+  "reports": {
+    "outputDir": "/zap/reports",
+    "formats": ["html", "json", "xml", "md"]
+  },
+  "logging": {
+    "level": "info",
+    "file": "/zap/server/logs/server.log"
+  }
+}
